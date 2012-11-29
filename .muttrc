@@ -1,0 +1,57 @@
+bind generic H help
+bind generic ? search-reverse
+bind browser G last-entry
+bind browser g first-entry
+bind index G last-entry
+bind index N search-opposite
+bind index P recall-message
+bind index R group-reply
+bind index \Cb previous-page
+bind index \Cd half-down
+bind index \Cf next-page
+bind index \Cu half-up
+bind index g first-entry
+bind pager <down> next-line
+bind pager <up> previous-line
+bind pager ? search-reverse
+bind pager G bottom
+bind pager J next-entry
+bind pager K previous-entry
+bind pager N search-opposite
+bind pager P recall-message
+bind pager R group-reply
+bind pager \Cb previous-page
+bind pager \Cd half-down
+bind pager \Cf next-page
+bind pager \Cu half-up
+bind pager g top
+bind pager j next-line
+bind pager k previous-line
+set ascii_chars=yes
+set autoedit=yes
+set confirmappend=no
+set confirmcreate=no
+set edit_headers=yes
+set editor="vim '+set tw=64 spell'"
+set fast_reply=yes
+set header_cache="/home/me/.mutt/header_cache"
+set include=yes
+set markers=no
+set mime_forward=yes
+set move=no
+set pager_stop=yes
+set prompt_after=no
+set reply_to=yes
+set sort="threads"
+set tilde=yes
+set use_from=yes
+hdr_order Date: From: To: Cc: Subject:
+my_hdr From: me@example.com
+my_hdr Bcc: bcc@example.com
+
+set imap_user="me@example.com"
+set spoolfile="imaps://localhost/INBOX"
+set folder="!"
+set record="=Sent"
+set postponed="=Drafts"
+set timeout=10

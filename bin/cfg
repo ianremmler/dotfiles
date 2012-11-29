@@ -1,0 +1,41 @@
+#!/bin/sh
+
+PATH=$PATH:/sbin
+
+config_input() {
+	setxkbmap -option ctrl:nocaps
+	dev="TPPS/2 IBM TrackPoint"
+	xinput --set-prop "$dev" "Evdev Wheel Emulation" 1
+	xinput --set-prop "$dev" "Evdev Wheel Emulation Button" 2
+	xinput --set-int-prop "$dev" "Evdev Wheel Emulation Axes" 8 6 7 4 5
+}
+
+config_display() {
+	xrandr --auto
+	xset -dpms s off
+}
+
+config_input
+config_display
+
+stdbuf -oL udevadm monitor --udev --property \
+	--subsystem-match=machinecheck \
+	--subsystem-match=hidraw \
+	--subsystem-match=drm \
+| stdbuf -oL sed -e '/SUBSYSTEM/!d' -e 's/SUBSYSTEM=//' \
+| while read -r line
+do
+	udevadm settle
+	case "$line" in
+	"machinecheck"*)
+		config_input
+		config_display
+		;;
+	"hidraw"*)
+		config_input
+		;;
+	"drm"*)
+		config_display
+		;;
+	esac
+done

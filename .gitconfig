@@ -1,0 +1,9 @@
+[color]
+	ui = true
+[pager]
+	status = true
+[status]
+	showUntrackedFiles = no
+[user]
+	name = Ian Remmler
+	email = me@example.com
