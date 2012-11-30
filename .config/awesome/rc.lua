@@ -323,8 +323,8 @@ end
 
 global_buttons = awful.util.table.join(
     button("desk_main_menu", function() main_menu:toggle() end),
-    button("desk_prev_tag", awful.tag.viewnext),
-    button("desk_next_tag", awful.tag.viewprev)
+    button("desk_prev_tag", awful.tag.viewprev),
+    button("desk_next_tag", awful.tag.viewnext)
 )
 
 root.keys(global_keys)
