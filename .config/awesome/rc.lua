@@ -284,15 +284,15 @@ global_keys = awful.util.table.join(
     key("global_toggle_panel", function()
         for s = 1, screen.count() do wibox[s].visible = not wibox[s].visible end
     end),
-    key("global_win_menu", function ()
+    key("global_win_menu", function()
         awful.menu.clients(
             { width = winmenu_width },
             { keygrabber = true, coords = { x = 0, y = 0 } }
         )
     end),
     key("global_video_autoconf", function() awful.util.spawn(video_autoconf) end),
-    key("global_prev_screen", function () awful.screen.focus_relative(-1) end),
-    key("global_next_screen", function () awful.screen.focus_relative(1) end)
+    key("global_prev_screen", function() awful.screen.focus_relative(-1) end),
+    key("global_next_screen", function() awful.screen.focus_relative(1) end)
 )
 
 num_tag_keys = 0
