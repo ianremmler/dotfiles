@@ -69,6 +69,8 @@ keys = {
     win_swap_master       = { { W, S    }, ";"           },
     win_prev_screen       = { { W, S    }, "p"           },
     win_next_screen       = { { W, S    }, "n"           },
+    win_grow              = { { W, C    }, "k"           },
+    win_shrink            = { { W, C    }, "j"           },
 }
 
 buttons = {
@@ -131,9 +133,7 @@ layouts = {
 tag_ids = {}
 for i = 1, num_tags do tag_ids[i] = i end
 tags = {}
-for s = 1, screen.count() do
-    tags[s] = awful.tag(tag_ids, s, layouts[1])
-end
+for s = 1, screen.count() do tags[s] = awful.tag(tag_ids, s, layouts[1]) end
 
 launcher = awful.widget.launcher({ image = image(beautiful.awesome_icon), menu = main_menu, })
 clock = awful.widget.textclock({ align = "right" }, "%F %H:%M")
@@ -340,7 +340,9 @@ client_keys = awful.util.table.join(
     key("win_toggle_min", function(c) c.minimized = not c.minimized end),
     key("win_swap_master", function(c) c:swap(awful.client.getmaster()) end),
     key("win_prev_screen", function(c) awful.client.movetoscreen(c, c.screen - 1) end),
-    key("win_next_screen", function(c) awful.client.movetoscreen(c, c.screen + 1) end)
+    key("win_next_screen", function(c) awful.client.movetoscreen(c, c.screen + 1) end),
+    key("win_grow", function(c) awful.client.incwfact(0.05, c) end),
+    key("win_shrink", function(c) awful.client.incwfact(-0.05, c) end)
 )
 
 client_buttons = awful.util.table.join(
