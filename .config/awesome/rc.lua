@@ -32,6 +32,7 @@ keys = {
     global_toggle_win     = { { W, C, S },               },
     global_prev_tag       = { { W       }, "h"           },
     global_next_tag       = { { W       }, "l"           },
+    global_last_tag       = { { W       }, "o"           },
     global_prev_win       = { { W       }, "k"           },
     global_next_win       = { { W       }, "j"           },
     global_main_menu      = { { W       }, "m"           },
@@ -230,6 +231,7 @@ end
 global_keys = awful.util.table.join(
     key("global_prev_tag", awful.tag.viewprev),
     key("global_next_tag", awful.tag.viewnext),
+    key("global_last_tag", awful.tag.history.restore),
     key("global_prev_win", function()
         awful.client.focus.byidx(-1)
         if client.focus then client.focus:raise() end
