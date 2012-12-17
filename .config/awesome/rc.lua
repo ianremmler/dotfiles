@@ -12,7 +12,7 @@ winmenu_width  = 512
 num_tags       = 9
 terminal       = "roxterm"
 browser        = "firefox"
-video_autoconf = "xrandr --output LVDA1 --auto --output HDMI1 --auto --output VGA1 --auto"
+video_autoconf = "xrandr --output LVDS1 --auto --output HDMI1 --auto --output VGA1 --auto"
 fancy_run      = "gmrun"
 
 awful.menu.menu_keys.up    = { "k", "Up"              }
