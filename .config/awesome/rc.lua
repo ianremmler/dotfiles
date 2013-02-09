@@ -14,6 +14,8 @@ terminal       = "roxterm"
 browser        = "firefox"
 video_autoconf = "xrandr --output LVDS1 --auto --output HDMI1 --auto --output VGA1 --auto"
 fancy_run      = "gmrun"
+suspend        = "dbus-send --print-reply --system --dest=org.freedesktop.UPower \
+			    /org/freedesktop/UPower org.freedesktop.UPower.Suspend"
 
 awful.menu.menu_keys.up    = { "k", "Up"              }
 awful.menu.menu_keys.down  = { "j", "Down", "Tab"     }
@@ -45,8 +47,9 @@ keys = {
     global_goto_master    = { { W       }, ";"           },
     global_run_terminal   = { { W       }, "Return"      },
     global_run_browser    = { { W, C    }, "Return"      },
-    global_quit           = { { W, C    }, "BackSpace"   },
-    global_restart        = { { W, S    }, "BackSpace"   },
+    global_restart        = { { W, C    }, "r"           },
+    global_suspend        = { { W, C    }, "s"           },
+    global_quit           = { { W, C    }, "q"           },
     global_grow_master    = { { W, C    }, "l"           },
     global_shrink_master  = { { W, C    }, "h"           },
     global_inc_masters    = { { W       }, "]"           },
@@ -111,8 +114,9 @@ config_menu = {
 }
 
 awesome_menu = {
-    { "restart", awesome.restart },
-    { "quit",    awesome.quit    },
+    { "restart", awesome.restart                          },
+    { "quit",    awesome.quit                             },
+    { "suspend", function() awful.util.spawn(suspend) end },
 }
 
 main_menu = awful.menu({
@@ -254,6 +258,7 @@ global_keys = awful.util.table.join(
     key("global_run_terminal", function() awful.util.spawn(terminal) end),
     key("global_run_browser", function() awful.util.spawn(browser) end),
     key("global_restart", awesome.restart),
+    key("global_suspend", function() awful.util.spawn(suspend) end),
     key("global_quit", awesome.quit),
     key("global_grow_master", function() awful.tag.incmwfact(0.05) end),
     key("global_shrink_master", function() awful.tag.incmwfact(-0.05) end),
