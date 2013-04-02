@@ -38,12 +38,15 @@ set untimed_duration="60"
 # if busy_algorithm="1", number of reminders per day allowed for each calendar 
 # colorization level; if busy_algorithm="2", use number of hours of reminders
 # per day
-set busy_level1="1"   # level1 color
-set busy_level2="3"   # level2 color
-set busy_level3="5"   # level2 color, bold
-set busy_level4="7"   # level3 color
-                      # (everything else is level3 color, bold)
-
+# set busy_level1="1"   # level1 color
+# set busy_level2="3"   # level2 color
+# set busy_level3="5"   # level2 color, bold
+# set busy_level4="7"   # level3 color
+#                       # (everything else is level3 color, bold)
+set busy_level1="0"   # level1 color
+set busy_level2="1"   # level2 color
+set busy_level3="2"   # level2 color, bold
+set busy_level4="3"   # level3 color
 
 # first day of the week is Sunday
 set week_starts_monday="false"
