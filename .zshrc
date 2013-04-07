@@ -1,3 +1,5 @@
+FPATH=$FPATH:$HOME/.zsh/completion
+
 insert_prompt="%n@%m:%~%# "
 command_prompt="%n@%m:%~: "
 export PS1=$insert_prompt
@@ -15,9 +17,13 @@ export CGO_LDFLAGS="-L$HOME/lib"
 export GEM_HOME=$HOME/pkg/gems
 export PATH=$GEM_HOME/bin:$PATH
 
+export EDITOR=vim
+
 bindkey '^[[Z' reverse-menu-complete
 
 alias ls="ls -F --color=tty"
+
+stty -ixon -ixoff
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/ian/.zshrc'
@@ -26,14 +32,12 @@ autoload -Uz compinit promptinit
 compinit
 promptinit
 
-# End of lines added by compinstall
-#
-# Lines configured by zsh-newuser-install
+. ~/pkg/go/misc/zsh/go
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt menucomplete nobeep
-# End of lines configured by zsh-newuser-install
 
 # vi mode stuff
 bindkey -v
