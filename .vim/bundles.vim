@@ -8,9 +8,11 @@ Bundle 'tpope/vim-pathogen'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jpalardy/vim-slime'
+Bundle 'vimwiki/vimwiki'
 Bundle 'ianremmler/frood'
 Bundle 'ianremmler/comment'
 Bundle 'rosenfeld/conque-term'
+Bundle 'scrooloose/syntastic'
 
 " vim-scripts
 Bundle 'Align'
