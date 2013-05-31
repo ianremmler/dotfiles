@@ -23,6 +23,8 @@ set autochdir
 set pastetoggle=<C-\\>
 set foldlevelstart=99
 
+runtime ftplugin/man.vim
+
 let alternateExtensions_h = "c,cpp,cxx,cc,CC,tcc"
 let alternateExtensions_tcc = "h"
 let alternateNoDefaultAlternate = 1
@@ -34,24 +36,24 @@ autocmd FileType c,cpp,perl,java,ruby setlocal cinkeys-=0#
 autocmd FileType c,cpp,perl,java,ruby setlocal formatoptions=cq
 autocmd FileType c,cpp,perl,java setlocal textwidth=96 shiftwidth=4 tabstop=4
 autocmd FileType ruby setlocal textwidth=96 shiftwidth=4 tabstop=4
-autocmd FileType go let &l:tags = &tags . "," . $GOPATH . "/tags"
-autocmd FileType go setlocal makeprg=go tabstop=4 shiftwidth=4
-autocmd FileType go,cpp setlocal commentstring=//\ %s
 autocmd FileType asciidoc setlocal makeprg=asciidoc\ %
 autocmd FileType html,javascript setlocal tabstop=4 shiftwidth=4
+autocmd FileType cpp setlocal commentstring=//\ %s
 
 autocmd BufNewFile,BufRead *.ol setlocal textwidth=96 shiftwidth=2 tabstop=2 autoindent
 autocmd BufNewFile,BufRead *.ol setlocal foldmethod=indent
 
-set errorformat+=%f:%l[%*\\S]:\ %m
-set errorformat+=gotest:\ parse\ error:\ %f:%l:%c:\ %m
 set errorformat+=asciidoc:\ %t%*[^:]:\ %f:\ line\ %l:\ %m
 
 let maplocalleader=','
 
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
+let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+
 map <silent> <LocalLeader>, :call Comment () <cr>
 map <silent> <LocalLeader>< :call UnComment () <cr>
 nmap <silent> <C-_> :noh<cr>
 nmap <silent> <LocalLeader>s :SyntasticCheck <cr>
+map <silent> <LocalLeader>l :set list! <cr>
+map <silent> <LocalLeader>n :set nu! <cr>
