@@ -1,8 +1,8 @@
-PATH=$HOME/bin:$PATH
+PATH=$HOME/devel/go/bin:$HOME/bin:$PATH:/usr/sbin:/sbin
 
 udisks-glue -s
-wicd-gtk -t &
-volti &
+pnmixer &
 cfg &
-awesome
-pkill udevadm # doesn't die when cfg does for some reason
+(sleep 3 && wpa_gui -t) &
+(sleep 3 && cfgvid) &
+exec awesome

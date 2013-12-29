@@ -1,0 +1,8 @@
+#!/bin/sh
+
+pid=$(xprop -name "$2" _NET_WM_PID | cut -d" " -f3)
+if [ -z "$pid" ]; then
+	nohup "$1" >/dev/null 2>&1 &
+else
+	kill "$pid" >/dev/null 2>&1
+fi

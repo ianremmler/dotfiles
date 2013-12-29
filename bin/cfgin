@@ -1,0 +1,16 @@
+#!/bin/sh
+
+dev="TPPS/2 IBM TrackPoint"
+
+# wait for device to show up
+until xinput --list | grep -q "$dev"; do
+	sleep 1
+done
+
+# turn on trackpoint scrolling
+xinput --set-prop "$dev" "Evdev Wheel Emulation" 1
+xinput --set-prop "$dev" "Evdev Wheel Emulation Button" 2
+xinput --set-int-prop "$dev" "Evdev Wheel Emulation Axes" 8 6 7 4 5
+
+# make caps lock be control
+setxkbmap -option ctrl:nocaps

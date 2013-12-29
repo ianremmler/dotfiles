@@ -10,15 +10,12 @@ set hide_help="false"
 # whether or not to conserve memory in favor of faster rendering
 set conserve_memory="false"
 
-
 # keys for "edit" operations, which affect the data that
 # is currently being entered
-bind "\\"             edit_minus
+bind "-"              edit_minus
 bind "<backspace>"    edit_backspace
 bind "<return>"       edit_enter
 bind "`"              edit_scientific_notation_base
-# bind "<space>"        edit_scientific_notation_base
-# bind "e"              edit_scientific_notation_base
 bind "#"              edit_begin_integer
 bind "("              edit_complex
 bind "["              edit_matrix
@@ -34,54 +31,55 @@ bind "+"              function_add
 bind "-"              function_sub
 bind "*"              function_mult
 bind "/"              function_div
-bind "\\"             function_neg
+bind "n"              function_neg
 bind "i"              function_inv
 bind "^"              function_pow
-bind "s"              function_sqrt
+bind "r"              function_sqrt
 bind "a"              function_abs
-bind "\\Ca"           function_arg
-# bind "e"              function_exp
-bind "x"              function_exp
-# bind "l"              function_ln
-bind "n"              function_ln
-bind "c"              function_conj
+bind "e"              function_exp
+bind "l"              function_ln
+bind "L"              function_log10
+bind "j"              function_conj
 bind "!"              function_factorial
 bind "%"              function_mod
-bind "S"              function_store
+bind "s"              function_sin
+bind "c"              function_cos
+bind "t"              function_tan
+bind "S"              function_asin
+bind "C"              function_acos
+bind "T"              function_atan
+bind "$"              function_store
 bind ";"              function_eval
+bind "U"              function_convert_units
 
 # keys for "command" operations, which do not take an argument
-# bind "\\"             command_drop
 bind "d"              command_drop
 bind "|"              command_clear
-# bind "<pageup>"       command_swap
-# bind "<pagedown>"     command_swap
-bind ">"              command_swap
+bind "<space>"        command_swap
 bind "<return>"       command_dup
 bind "u"              command_undo
-# bind "<up>"           command_begin_browsing
+bind "<up>"           command_begin_browsing
 bind "k"              command_begin_browsing
 bind "'"              command_begin_abbrev
-bind "C"              command_begin_constant
+bind ":"              command_begin_constant
 bind "@"              command_begin_variable
-bind "r"              command_toggle_angle_mode
-bind "p"              command_toggle_complex_mode
-bind "b"              command_cycle_base
+bind "A"              command_toggle_angle_mode
+bind "B"              command_cycle_base
+bind "X"              command_toggle_complex_mode
 bind "v"              command_view
 bind "\\Cl"           command_refresh
 bind "P"              command_enter_pi
 bind "E"              command_edit_input
-# bind "h"              command_cycle_help
 bind "?"              command_cycle_help
 bind "q"              command_quit
 
 # keys for "browse" operations, which are active during
 # stack browsing mode
 bind "q"              browse_end
-# bind "<left>"         browse_scroll_left
-# bind "<right>"        browse_scroll_right
-# bind "<up>"           browse_prev_line
-# bind "<down>"         browse_next_line
+bind "<left>"         browse_scroll_left
+bind "<right>"        browse_scroll_right
+bind "<up>"           browse_prev_line
+bind "<down>"         browse_next_line
 bind "h"              browse_scroll_left
 bind "l"              browse_scroll_right
 bind "k"              browse_prev_line
@@ -90,11 +88,8 @@ bind "r"              browse_rolldown
 bind "R"              browse_rollup
 bind "v"              browse_view
 bind "<return>"       browse_echo
-# bind "\\"             browse_drop
 bind "d"              browse_drop
 bind "D"              browse_dropn
-# bind "k"              browse_keep
-# bind "K"              browse_keepn
 bind "y"              browse_keep
 bind "Y"              browse_keepn
 bind "E"              browse_edit
@@ -111,14 +106,14 @@ bind "<backspace>"    variable_backspace
 bind "<tab>"          variable_complete
 
 # autobound keys
-autobind "<f5>"
-autobind "<f6>"
-autobind "<f7>"
-autobind "<f8>"
-autobind "<f9>"
-autobind "<f10>"
-autobind "<f11>"
-autobind "<f12>"
+# autobind "<f5>"
+# autobind "<f6>"
+# autobind "<f7>"
+# autobind "<f8>"
+# autobind "<f9>"
+# autobind "<f10>"
+# autobind "<f11>"
+# autobind "<f12>"
 
 # abbrev command abbreviations
 # these should be given in the desired order of matching precedence
@@ -205,7 +200,6 @@ abbrev "mult"              function_mult
 abbrev "div"               function_div
 abbrev "neg"               function_neg
 abbrev "about"             command_about
-
 
 # fundamental SI units
 base_unit   "m"   ""
@@ -364,7 +358,7 @@ constant "lamc"   "0.00242631058_nm"
 constant "c3"     "0.002897756_m*K"
 
 # base 2 logarithm
-macro "g" "n 2 n /"
+macro "g" "l 2 l /"
 # or alternatively, using abbrev command syntax:
 #macro "L" "' l n <return> 2 <return> ' l n <return> /"
 
@@ -374,9 +368,9 @@ macro "g" "n 2 n /"
 # macro "m" "<return> ' t r a n s <return> * ' t o r e a l <return> s"
 
 # registers
-macro "<f1>" "@ r 0 1 <return>"
-macro "<f2>" "@ r 0 2 <return>"
-macro "<f3>" "@ r 0 3 <return>"
-macro "<f4>" "@ r 0 4 <return>"
+# macro "<f1>" "@ r 0 1 <return>"
+# macro "<f2>" "@ r 0 2 <return>"
+# macro "<f3>" "@ r 0 3 <return>"
+# macro "<f4>" "@ r 0 4 <return>"
 
 # arch-tag: DO_NOT_CHANGE_bb2181f2-1288-4d0f-849b-36482daf59c5  

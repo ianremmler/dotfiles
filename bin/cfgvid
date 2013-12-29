@@ -1,0 +1,19 @@
+#!/bin/sh
+
+layout="$HOME/.screenlayout/$1.sh" 
+
+# add 1280x720 mode for lcd
+res="1280 720"
+modeline=$(cvt $res | sed -e '/^#/d' -e 's/Modeline\s*"\([0-9x]*\).*"/\1/')
+set $modeline
+modename="$1"
+xrandr --newmode $modeline 2>/dev/null
+xrandr --addmode LVDS1 $modename 2>/dev/null
+
+# configure for given display mode
+if [ -f "$layout" ]; then
+	/bin/sh $layout
+fi
+
+# disable screen blanking
+xset -dpms s off

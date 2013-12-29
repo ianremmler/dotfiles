@@ -1,53 +1,39 @@
-FPATH=$FPATH:$HOME/.zsh/completion
-
-insert_prompt="%n@%m:%~%# "
-command_prompt="%n@%m:%~: "
-export PS1=$insert_prompt
-export PATH=$HOME/sbin:/sbin:/usr/sbin:$HOME/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/games:/usr/games
-export LD_LIBRARY_PATH=$HOME/lib:/usr/local/lib
-export MANPATH=$HOME/man:$HOME/share/man:
-export PKG_CONFIG_PATH=$HOME/lib/pkgconfig
-
-export GOROOT=$HOME/pkg/go
-export GOPATH=$HOME/devel/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-export CGO_CFLAGS="-I$HOME/include"
-export CGO_LDFLAGS="-L$HOME/lib"
-
-export GEM_HOME=$HOME/pkg/gems
-export PATH=$GEM_HOME/bin:$PATH
-
+# environment stuff
+export PS1="%n@%m:%~%# "
+export FPATH=~/.zsh:$FPATH
+export PATH=~/sbin:/sbin:/usr/sbin:~/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/games:/usr/games
+export LD_LIBRARY_PATH=~/lib:/usr/local/lib
+export MANPATH=:~/man:~/share/man
+export PKG_CONFIG_PATH=~/lib/pkgconfig
 export EDITOR=vim
 
-bindkey '^[[Z' reverse-menu-complete
-
-alias ls="ls -F --color=tty"
-
-stty -ixon -ixoff
-
-# The following lines were added by compinstall
+# zsh stuff
+setopt menucomplete nobeep
 zstyle :compinstall filename '/home/ian/.zshrc'
-
-autoload -Uz compinit promptinit
-compinit
-promptinit
-
-. ~/pkg/go/misc/zsh/go
-
+autoload -Uz compinit edit-command-line
+compinit -u
+zle -N edit-command-line
+bindkey -v
+bindkey -M vicmd v edit-command-line
+bindkey '^[[Z' reverse-menu-complete
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
-setopt menucomplete nobeep
 
-# vi mode stuff
-bindkey -v
-function zle-line-init zle-keymap-select {
-	PS1="${${KEYMAP/vicmd/$command_prompt}/(main|viins)/$insert_prompt}"
-	zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+# terminal stuff
+stty -ixon -ixoff # disable ^S
 
-autoload edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+# go stuff
+export GOPATH=~/devel/go
+export PATH=$GOPATH/bin:~/pkg/go/bin:$PATH
+export CGO_CFLAGS=-I$HOME/include
+export CGO_LDFLAGS=-L$HOME/lib
+. ~/pkg/go/misc/zsh/go
+. ~/devel/go/crosscompile.bash
+
+# ruby stuff
+export GEM_HOME=~/pkg/gems
+export PATH=$GEM_HOME/bin:$PATH
+
+# alias stuff
+alias ls="ls -F --color=tty"

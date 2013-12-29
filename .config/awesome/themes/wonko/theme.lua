@@ -4,7 +4,7 @@ theme = {}
 
 theme.dir                    = awful.util.getdir("config") .. "/themes/wonko"
 theme.wallpaper_cmd          = { "xsetroot -fg black -bg gray12 -mod 16 16" }
-theme.font                   = "Inconsolata bold 11"
+theme.font                   = "Inconsolata bold 12"
 theme.fg_focus               = "black"
 theme.bg_focus               = "gray75"
 theme.fg_normal              = "gray75"

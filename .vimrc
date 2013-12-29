@@ -3,6 +3,7 @@ source ~/.vim/bundles.vim
 filetype plugin indent on
 syntax on
 colorscheme frood
+runtime ftplugin/man.vim
 
 set visualbell
 set backspace=indent,eol,start
@@ -22,9 +23,12 @@ set cscopetag
 set autochdir
 set pastetoggle=<C-\\>
 set foldlevelstart=99
+set errorformat+=asciidoc:\ %t%*[^:]:\ %f:\ line\ %l:\ %m
 
-runtime ftplugin/man.vim
-
+let maplocalleader=','
+let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+let g:slime_no_mappings = 1
 let alternateExtensions_h = "c,cpp,cxx,cc,CC,tcc"
 let alternateExtensions_tcc = "h"
 let alternateNoDefaultAlternate = 1
@@ -39,21 +43,14 @@ autocmd FileType ruby setlocal textwidth=96 shiftwidth=4 tabstop=4
 autocmd FileType asciidoc setlocal makeprg=asciidoc\ %
 autocmd FileType html,javascript setlocal tabstop=4 shiftwidth=4
 autocmd FileType cpp setlocal commentstring=//\ %s
-
 autocmd BufNewFile,BufRead *.ol setlocal textwidth=96 shiftwidth=2 tabstop=2 autoindent
 autocmd BufNewFile,BufRead *.ol setlocal foldmethod=indent
-
-set errorformat+=asciidoc:\ %t%*[^:]:\ %f:\ line\ %l:\ %m
-
-let maplocalleader=','
-
-let g:syntastic_mode_map = { 'mode': 'passive' }
-
-let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 map <silent> <LocalLeader>, :call Comment () <cr>
 map <silent> <LocalLeader>< :call UnComment () <cr>
 nmap <silent> <C-_> :noh<cr>
-nmap <silent> <LocalLeader>s :SyntasticCheck <cr>
+nmap <silent> <LocalLeader>x :SyntasticCheck <cr>
 map <silent> <LocalLeader>l :set list! <cr>
 map <silent> <LocalLeader>n :set nu! <cr>
+xmap <silent> <LocalLeader>s <Plug>SlimeRegionSend
+nmap <silent> <LocalLeader>s <Plug>SlimeLineSend

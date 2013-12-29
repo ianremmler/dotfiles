@@ -1,5 +1,6 @@
 require("awful")
 require("awful.autofocus")
+require("awful.remote")
 require("awful.rules")
 require("beautiful")
 require("naughty")
@@ -12,10 +13,9 @@ winmenu_width  = 512
 num_tags       = 9
 terminal       = "roxterm"
 browser        = "firefox"
-video_autoconf = "xrandr --output LVDS1 --auto --output HDMI1 --auto --output VGA1 --auto"
+video_autoconf = "cfgvid auto"
 fancy_run      = "gmrun"
-suspend        = "dbus-send --print-reply --system --dest=org.freedesktop.UPower \
-			    /org/freedesktop/UPower org.freedesktop.UPower.Suspend"
+suspend        = "susp"
 
 awful.menu.menu_keys.up    = { "k", "Up"              }
 awful.menu.menu_keys.down  = { "j", "Down", "Tab"     }
@@ -28,53 +28,53 @@ S = "Shift"
 C = "Control"
 
 keys = {
-    global_select_tag     = { { W       },               },
-    global_move_win       = { { W, S    },               },
-    global_toggle_tag     = { { W, C    },               },
-    global_toggle_win     = { { W, C, S },               },
-    global_prev_tag       = { { W       }, "h"           },
-    global_next_tag       = { { W       }, "l"           },
-    global_last_tag       = { { W       }, "o"           },
-    global_prev_win       = { { W       }, "k"           },
-    global_next_win       = { { W       }, "j"           },
-    global_main_menu      = { { W       }, "m"           },
-    global_run            = { { W,      }, "space"       },
-    global_fancy_run      = { { W, C    }, "space"       },
-    global_run_lua        = { { W, S    }, "space"       },
-    global_swap_prev      = { { W, S    }, "k"           },
-    global_swap_next      = { { W, S    }, "j"           },
-    global_goto_last      = { { W       }, "'"           },
-    global_goto_master    = { { W       }, ";"           },
-    global_run_terminal   = { { W       }, "Return"      },
-    global_run_browser    = { { W, C    }, "Return"      },
-    global_restart        = { { W, C    }, "r"           },
-    global_suspend        = { { W, C    }, "s"           },
-    global_quit           = { { W, C    }, "q"           },
-    global_grow_master    = { { W, C    }, "l"           },
-    global_shrink_master  = { { W, C    }, "h"           },
-    global_inc_masters    = { { W       }, "]"           },
-    global_dec_masters    = { { W       }, "["           },
-    global_inc_cols       = { { W, C    }, "]"           },
-    global_dec_cols       = { { W, C    }, "["           },
-    global_vert_tile      = { { W       }, ","           },
-    global_horiz_tile     = { { W       }, "."           },
-    global_float          = { { W       }, "/"           },
-    global_reset_geom     = { { W       }, "0"           },
-    global_toggle_panel   = { { W       }, "`"           },
-    global_win_menu       = { { W       }, "Tab"         },
-    global_goto_urgent    = { { W       }, "u"           },
-    global_video_autoconf = { {         }, "XF86Display" },
-    global_prev_screen    = { { W       }, "p"           },
-    global_next_screen    = { { W       }, "n"           },
-    win_close             = { { W       }, "BackSpace"   },
-    win_toggle_float      = { { W       }, "\\"          },
-    win_toggle_max        = { { W       }, "="           },
-    win_toggle_min        = { { W       }, "-"           },
-    win_swap_master       = { { W, S    }, ";"           },
-    win_prev_screen       = { { W, S    }, "p"           },
-    win_next_screen       = { { W, S    }, "n"           },
-    win_grow              = { { W, C    }, "k"           },
-    win_shrink            = { { W, C    }, "j"           },
+    global_select_tag     = { { W       },                        },
+    global_move_win       = { { W, S    },                        },
+    global_toggle_tag     = { { W, C    },                        },
+    global_toggle_win     = { { W, C, S },                        },
+    global_prev_tag       = { { W       }, "h"                    },
+    global_next_tag       = { { W       }, "l"                    },
+    global_last_tag       = { { W       }, "o"                    },
+    global_prev_win       = { { W       }, "k"                    },
+    global_next_win       = { { W       }, "j"                    },
+    global_main_menu      = { { W       }, "m"                    },
+    global_run            = { { W,      }, "space"                },
+    global_fancy_run      = { { W, C    }, "space"                },
+    global_run_lua        = { { W, S    }, "space"                },
+    global_swap_prev      = { { W, S    }, "k"                    },
+    global_swap_next      = { { W, S    }, "j"                    },
+    global_goto_last      = { { W       }, "'"                    },
+    global_goto_master    = { { W       }, ";"                    },
+    global_run_terminal   = { { W       }, "Return"               },
+    global_run_browser    = { { W, C    }, "Return"               },
+    global_restart        = { { W, C    }, "r"                    },
+    global_suspend        = { { W, C    }, "s"                    },
+    global_quit           = { { W, C    }, "q"                    },
+    global_grow_master    = { { W, C    }, "l"                    },
+    global_shrink_master  = { { W, C    }, "h"                    },
+    global_inc_masters    = { { W       }, "]"                    },
+    global_dec_masters    = { { W       }, "["                    },
+    global_inc_cols       = { { W, C    }, "]"                    },
+    global_dec_cols       = { { W, C    }, "["                    },
+    global_vert_tile      = { { W       }, ","                    },
+    global_horiz_tile     = { { W       }, "."                    },
+    global_float          = { { W       }, "/"                    },
+    global_reset_geom     = { { W       }, "0"                    },
+    global_toggle_panel   = { { W       }, "`"                    },
+    global_win_menu       = { { W       }, "Tab"                  },
+    global_goto_urgent    = { { W       }, "u"                    },
+    global_video_autoconf = { {         }, "XF86Display"          },
+    global_prev_screen    = { { W       }, "p"                    },
+    global_next_screen    = { { W       }, "n"                    },
+    win_close             = { { W       }, "BackSpace"            },
+    win_toggle_float      = { { W       }, "\\"                   },
+    win_toggle_max        = { { W       }, "="                    },
+    win_toggle_min        = { { W       }, "-"                    },
+    win_swap_master       = { { W, S    }, ";"                    },
+    win_prev_screen       = { { W, S    }, "p"                    },
+    win_next_screen       = { { W, S    }, "n"                    },
+    win_grow              = { { W, C    }, "k"                    },
+    win_shrink            = { { W, C    }, "j"                    },
 }
 
 buttons = {
@@ -85,10 +85,10 @@ buttons = {
     tag_prev             = { {      }, 4 },
     tag_next             = { {      }, 5 },
     winlist_select       = { {      }, 1 },
-    winlist_toggle_max   = { { C    }, 1 },
-    winlist_toggle_float = { {      }, 2 },
-    winlist_close        = { { C    }, 2 },
+    winlist_close        = { {      }, 2 },
     winlist_menu         = { {      }, 3 },
+    winlist_toggle_max   = { { C    }, 1 },
+    winlist_toggle_float = { { C    }, 2 },
     winlist_toggle_min   = { { C    }, 3 },
     winlist_prev         = { {      }, 4 },
     winlist_next         = { {      }, 5 },
@@ -101,9 +101,9 @@ buttons = {
     desk_next_tag        = { {      }, 5 },
     win_select           = { {      }, 1 },
     win_move             = { { W    }, 1 },
-    win_close            = { { W, C }, 2 },
+    win_close            = { { W    }, 2 },
     win_resize           = { { W    }, 3 },
-    win_toggle_float     = { { W    }, 2 },
+    win_toggle_float     = { { W, C }, 2 },
     win_toggle_max       = { { W, C }, 1 },
     win_toggle_min       = { { W, C }, 3 },
 }
@@ -213,7 +213,7 @@ for s = 1, screen.count() do
         function(c) return awful.widget.tasklist.label.currenttags(c, s) end,
         winlist.buttons
     )
-    wibox[s] = awful.wibox({ position = "top", screen = s })
+    wibox[s] = awful.wibox({ position = "top", height = "24", screen = s})
     wibox[s].widgets = {
         {
             launcher,
